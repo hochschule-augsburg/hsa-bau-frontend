@@ -1,0 +1,33 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+}
+
+.inline-icon {
+	vertical-align: bottom;
+	font-size: 24px !important;
+}
+
+.mg-left-50 {
+	margin-left: 50px;
+}
+
+.mg-left-100 {
+	margin-left: 100px;
+}
+
+.mg-right-50 {
+	margin-right: 50px;
+}
+
+.mg-right-100 {
+	margin-right: 100px;
+}
+
+.mg-top-10 {
+	margin-top: 11px;
+}
+
+.text-size-mid {
+	font-size: 1.3rem;
+}
