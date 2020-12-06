@@ -15,7 +15,7 @@ export const useAuftrag = () => {
 export const getAuftraege = async (dispatch) => {
 	try {
 		const res = await axios.get('http://localhost:8088//restapi/auftrag');
-		console.log(res.data);
+		console.log('State', res.data);
 		dispatch({
 			type: GET_AUFTRAEGE,
 			payload: res.data

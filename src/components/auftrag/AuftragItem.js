@@ -7,12 +7,23 @@ const AuftragItem = ({ auftrag }) => {
 		<Fragment>
 			<tbody>
 				<tr>
-					<td>{auftrag.uuid}</td>
 					<td>{auftrag.bauvorhaben}</td>
 					<td>{auftrag.name}</td>
 					<td>{auftrag.kunde}</td>
 					<td>{auftrag.monteur}</td>
-					<td>{auftrag.status}</td>
+					<td>
+						<b>{auftrag.status}</b>
+					</td>
+					<td>
+						<a href='!#'>
+							<i className='material-icons grey-text'>delete</i>
+						</a>
+					</td>
+					<td>
+						<a href='!#'>
+							<i className='material-icons grey-text'>edit</i>
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</Fragment>

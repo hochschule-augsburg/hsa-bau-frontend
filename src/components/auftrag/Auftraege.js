@@ -3,17 +3,23 @@ import React, { useEffect, Fragment } from 'react';
 import AuftragItem from './AuftragItem';
 
 import { useAuftrag, getAuftraege } from '../../context/auftrag/auftragState';
+import Spinner from '../layout/Spinner';
 
 const Auftraege = () => {
 	const [auftragState, auftragDispatch] = useAuftrag();
-	const { auftraege } = auftragState;
+	const { auftraege, loading } = auftragState;
 
 	useEffect(() => {
 		getAuftraege(auftragDispatch);
 		console.log(auftraege);
+		console.log(typeof auftraege);
 	}, [auftragDispatch]);
 
-	if (auftraege !== null && auftraege.length === 0) {
+	if (loading) {
+		return <Spinner />;
+	}
+
+	if (auftraege !== null && auftraege.length === 0 && !loading) {
 		return (
 			<div className='container'>
 				<div className='row'>
@@ -26,17 +32,19 @@ const Auftraege = () => {
 	} else {
 		return (
 			<Fragment>
-				{auftraege !== null && (
+				{auftraege !== null && !loading && (
 					<div className='container'>
+						<h4>Auftragsübersicht</h4>
 						<table className='highlight'>
 							<thead>
 								<tr>
-									<th>Kundennummer</th>
 									<th>Bauvorhaben</th>
 									<th>Name</th>
 									<th>Kunde</th>
 									<th>Monteur</th>
 									<th>Status</th>
+									<th>Delete</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							{auftraege !== null && auftraege.map((auftrag) => <AuftragItem auftrag={auftrag} key={auftrag.uuid} />)}

@@ -5,7 +5,7 @@ const auftragReducer = (state, action) => {
 		case GET_AUFTRAEGE:
 			return {
 				...state,
-				auftraege: action.payload.auftraege,
+				auftraege: action.payload,
 				success: action.payload.success,
 				loading: false
 			};

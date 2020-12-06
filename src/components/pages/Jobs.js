@@ -5,7 +5,7 @@ import Auftraege from '../auftrag/Auftraege';
 const Jobs = () => {
 	return (
 		<Fragment>
-			<div>test</div>
+			<Auftraege />
 		</Fragment>
 	);
 };
