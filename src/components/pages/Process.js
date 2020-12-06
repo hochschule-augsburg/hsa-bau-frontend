@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
 
+import ProcessForm from '../../components/process/ProcessForm';
+
 const Process = () => {
 	return (
 		<Fragment>
-			<div className='container'>
-				<h4>Legen Sie einen neuen Auftrag an</h4>
-				<div>... und starten Sie den Prozess</div>
-			</div>
+			<ProcessForm />
 		</Fragment>
 	);
 };

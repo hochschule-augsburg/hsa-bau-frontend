@@ -11,17 +11,20 @@ const Auftraege = () => {
 
 	useEffect(() => {
 		getAuftraege(auftragDispatch);
-		console.log(auftraege);
-		console.log(typeof auftraege);
+		//console.log(auftraege);
+		//console.log(typeof auftraege);
 	}, [auftragDispatch]);
 
 	if (loading) {
 		return <Spinner />;
 	}
 
+	console.log(auftraege);
+
 	if (auftraege !== null && auftraege.length === 0 && !loading) {
 		return (
 			<div className='container'>
+				<h4 className='center-align'>Auftragsübersicht</h4>
 				<div className='row'>
 					<div className='mg-top-100 center-align'>
 						<span>Momentan sind keine Aufträge vorhanden...</span>
@@ -34,7 +37,8 @@ const Auftraege = () => {
 			<Fragment>
 				{auftraege !== null && !loading && (
 					<div className='container'>
-						<h4>Auftragsübersicht</h4>
+						<h4 className='center-align'>Auftragsübersicht</h4>
+						<br />
 						<table className='highlight'>
 							<thead>
 								<tr>
@@ -47,7 +51,8 @@ const Auftraege = () => {
 									<th>Edit</th>
 								</tr>
 							</thead>
-							{auftraege !== null && auftraege.map((auftrag) => <AuftragItem auftrag={auftrag} key={auftrag.uuid} />)}
+							{}
+							{auftraege !== null && auftraege.map((auftrag) => <AuftragItem auftrag={auftrag} key={auftrag.id} />)}
 						</table>
 						<div></div>
 					</div>

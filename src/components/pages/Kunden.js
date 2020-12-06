@@ -4,8 +4,8 @@ const Kunden = () => {
 	return (
 		<Fragment>
 			<div className='container'>
-				<h4>Kundenübersicht</h4>
-				<div>Kundenseite: Übersicht, Anlegen, Bearbeiten, Löschen</div>
+				<h4 className='center-align'>Kundenübersicht</h4>
+				<div className='center-align'>Kundenseite: Übersicht, Anlegen, Bearbeiten, Löschen</div>
 			</div>
 		</Fragment>
 	);

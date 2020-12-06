@@ -19,7 +19,7 @@ const auftragReducer = (state, action) => {
 		case ADD_AUFTRAG:
 			return {
 				...state,
-				auftraege: [action.payload.auftrag, ...state.auftraege],
+				auftraege: [action.payload, ...state.auftraege],
 				selected: action.payload.auftrag,
 				success: action.payload.success,
 				loading: false

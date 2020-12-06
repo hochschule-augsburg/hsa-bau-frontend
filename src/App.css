@@ -28,6 +28,11 @@ body {
 	margin-top: 11px;
 }
 
+.mg-center {
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .text-size-mid {
 	font-size: 1.3rem;
 }
