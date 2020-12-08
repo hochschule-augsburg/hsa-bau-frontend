@@ -1,11 +1,15 @@
 import React, { Fragment } from 'react';
 
+import Tasks from '../task/Tasks';
+
 const TaskList = () => {
 	return (
 		<Fragment>
 			<div className='container'>
-				<h4 className='center-align'>Taskliste</h4>
-				<div className='center-align'>Task Liste: Anzeigen von Tasks, und Laden der passenden Form bei klicken auf Task</div>
+				<h4 className='center-align'>Task Liste</h4>
+				<div className='row'>
+					<Tasks />
+				</div>
 			</div>
 		</Fragment>
 	);

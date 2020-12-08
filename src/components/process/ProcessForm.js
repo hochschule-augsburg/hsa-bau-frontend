@@ -2,10 +2,16 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-import { auftragEinplanen, useAuftrag } from '../../context/auftrag/auftragState';
+import { auftragEinplanen, getAuftraege, useAuftrag } from '../../context/auftrag/auftragState';
 
 const ProcessForm = () => {
 	const [auftragState, auftragDispatch] = useAuftrag();
+
+	//load Auftraege into state before adding a new Auftrag
+	//otherwise state is not initialized when adding a new Auftrag in state
+	useEffect(() => {
+		getAuftraege(auftragDispatch);
+	}, [auftragDispatch]);
 
 	// local state
 	const [job, setJob] = useState({
@@ -19,11 +25,10 @@ const ProcessForm = () => {
 		e.preventDefault();
 		if (job.name === '' || job.bauvorhaben === '' || job.kundenId === '') {
 			M.toast({ html: 'Please fill out all fields' });
+		} else {
+			auftragEinplanen(job, auftragDispatch);
+			M.toast({ html: 'Auftrag eingeplant' });
 		}
-
-		auftragEinplanen(job, auftragDispatch);
-
-		console.log(auftragState);
 	};
 
 	// clickhandler

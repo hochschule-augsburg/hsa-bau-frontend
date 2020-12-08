@@ -6,4 +6,9 @@ export const UPDATE_AUFTRAG = 'UPDATE_AUFTRAG';
 export const AUFTRAG_FINISHED = 'AUFTRAG_FINISHED';
 export const AUFTRAG_ERROR = 'AUFTRAG_ERROR';
 export const CLEAR_AUFTRAEGE = 'CLEAR_AUFTRAEGE';
+
+export const GET_TASKS = 'GET_TASKS';
+export const TASK_ERROR = 'AUFTRAG_ERROR';
+export const CLEAR_TASKS = 'CLEAR_AUFTRAEGE';
+
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';

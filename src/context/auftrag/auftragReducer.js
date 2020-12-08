@@ -10,25 +10,29 @@ const auftragReducer = (state, action) => {
 				loading: false
 			};
 		case GET_AUFTRAG:
+			console.log('Reducer:', action.payload);
 			return {
 				...state,
-				selected: action.payload.auftrag,
+				selected: action.payload,
 				success: action.payload.success,
 				loading: false
 			};
 		case ADD_AUFTRAG:
+			//console.log('Reducer:', state.auftraege);
 			return {
 				...state,
 				auftraege: [action.payload, ...state.auftraege],
-				selected: action.payload.auftrag,
+				selected: null,
 				success: action.payload.success,
 				loading: false
 			};
 		case AUFTRAG_ERROR:
+			//console.log(action.payload);
 			return {
 				...state,
-				error: action.payload.msg,
-				success: action.payload.success
+				error: action.payload,
+				success: action.payload.success,
+				loading: false
 			};
 		case CLEAR_ERRORS:
 			return {

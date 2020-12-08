@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner';
 
 const Auftraege = () => {
 	const [auftragState, auftragDispatch] = useAuftrag();
-	const { auftraege, loading } = auftragState;
+	const { auftraege, loading, error } = auftragState;
 
 	useEffect(() => {
 		getAuftraege(auftragDispatch);
@@ -19,7 +19,18 @@ const Auftraege = () => {
 		return <Spinner />;
 	}
 
-	console.log(auftraege);
+	// if (error) {
+	// 	return (
+	// 		<div className='container'>
+	// 			<span className='center-align'>Fehler</span>
+	// 			<div className='row'>
+	// 				<div className='mg-top-100 center-align'>
+	// 					<span>Beim Abruf der Aufträge ist anscheinend ein Fehler passiert</span>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 
 	if (auftraege !== null && auftraege.length === 0 && !loading) {
 		return (
@@ -51,7 +62,6 @@ const Auftraege = () => {
 									<th>Edit</th>
 								</tr>
 							</thead>
-							{}
 							{auftraege !== null && auftraege.map((auftrag) => <AuftragItem auftrag={auftrag} key={auftrag.id} />)}
 						</table>
 						<div></div>
