@@ -1,4 +1,4 @@
-import { GET_AUFTRAEGE, GET_AUFTRAG, ADD_AUFTRAG, DELETE_AUFTRAG, UPDATE_AUFTRAG, AUFTRAG_FINISHED, AUFTRAG_ERROR, CLEAR_AUFTRAEGE, CLEAR_ERRORS } from '../types';
+import { GET_AUFTRAEGE, GET_AUFTRAG, ADD_AUFTRAG, DELETE_AUFTRAG, UPDATE_AUFTRAG, AUFTRAG_FINISHED, AUFTRAG_ERROR, CLEAR_AUFTRAEGE, CLEAR_ERRORS, CLEAR_AUFTRAG } from '../types';
 
 const auftragReducer = (state, action) => {
 	switch (action.type) {
@@ -6,7 +6,7 @@ const auftragReducer = (state, action) => {
 			return {
 				...state,
 				auftraege: action.payload,
-				success: action.payload.success,
+				success: null,
 				loading: false
 			};
 		case GET_AUFTRAG:
@@ -14,7 +14,7 @@ const auftragReducer = (state, action) => {
 			return {
 				...state,
 				selected: action.payload,
-				success: action.payload.success,
+				success: null,
 				loading: false
 			};
 		case ADD_AUFTRAG:
@@ -23,7 +23,7 @@ const auftragReducer = (state, action) => {
 				...state,
 				auftraege: [action.payload, ...state.auftraege],
 				selected: null,
-				success: action.payload.success,
+				success: null,
 				loading: false
 			};
 		case AUFTRAG_ERROR:
@@ -31,7 +31,7 @@ const auftragReducer = (state, action) => {
 			return {
 				...state,
 				error: action.payload,
-				success: action.payload.success,
+				success: null,
 				loading: false
 			};
 		case CLEAR_ERRORS:
@@ -39,10 +39,10 @@ const auftragReducer = (state, action) => {
 				...state,
 				error: null
 			};
-		case CLEAR_AUFTRAEGE:
+		case CLEAR_AUFTRAG:
 			return {
 				...state,
-				auftraege: null
+				selected: null
 			};
 		default:
 			return state;

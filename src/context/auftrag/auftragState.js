@@ -3,7 +3,7 @@ import AuftragContext from './auftragContext';
 import auftragReducer from './auftragReducer';
 import axios from 'axios';
 
-import { GET_AUFTRAEGE, GET_AUFTRAG, ADD_AUFTRAG, DELETE_AUFTRAG, UPDATE_AUFTRAG, AUFTRAG_FINISHED, AUFTRAG_ERROR, CLEAR_AUFTRAEGE, CLEAR_ERRORS } from '../types';
+import { GET_AUFTRAEGE, GET_AUFTRAG, ADD_AUFTRAG, DELETE_AUFTRAG, UPDATE_AUFTRAG, AUFTRAG_FINISHED, AUFTRAG_ERROR, CLEAR_AUFTRAG, CLEAR_AUFTRAEGE, CLEAR_ERRORS } from '../types';
 
 // create custom hook
 export const useAuftrag = () => {
@@ -30,29 +30,19 @@ export const getAuftraege = async (dispatch) => {
 	}
 };
 
-export const getProcessIdAndNameForTask = async (taskName, processId) => {
+// Get job for selected task
+export const getAuftrag = async (taskName, processId, taskId, dispatch) => {
 	try {
-		// localStorage.removeItem('taskName');
-		// localStorage.removeItem('businessKey');
-		//get process instance fpr the task
+		//get the process instance
 		const resInstance = await axios.get(`http://localhost:8088/engine-rest/process-instance/${processId}`);
 		const businessKey = resInstance.data.businessKey;
+		//const taskId = resInstance.data.id;
 
-		localStorage.setItem('taskName', taskName);
-		localStorage.setItem('businessKey', businessKey);
-	} catch (error) {
-		console.log('Error:', error);
-	}
-};
-
-// Get selected job
-export const getAuftrag = async (taskName, businessKey, dispatch) => {
-	try {
 		//get job from the process instance
 		const resAuftrag = await axios.get(`http://localhost:8088//restapi/auftrag/${businessKey}`); // ToDo: add proxy for /restapi/auftrag
 		console.log('Response', resAuftrag.data);
 
-		const newData = { ...resAuftrag.data, taskName };
+		const newData = { ...resAuftrag.data, taskName, taskId };
 
 		dispatch({
 			type: GET_AUFTRAG,
@@ -67,23 +57,15 @@ export const getAuftrag = async (taskName, businessKey, dispatch) => {
 	}
 };
 
+export const clearAuftrag = (dispatch) => {
+	dispatch({
+		type: CLEAR_AUFTRAG
+	});
+};
+
 // add new job and start process
 export const auftragEinplanen = async (job, dispatch) => {
 	try {
-		// const config = {
-		// 	headers: {
-		// 		'Content-Type': 'application/json;charset=UTF-8',
-		// 		'Access-Control-Allow-Origin': 'http://localhost:3000',
-		// 		'Access-Control-Allow-Headers': 'authorization, content-type, xsrf-token',
-		// 		'Access-Control-Expose-Headers': 'xsrf-token'
-		// 	}
-		// };
-
-		// const jobData = {
-		// 	...job,
-		// 	status: 'angelegt'
-		// };
-
 		const res = await axios.post('http://localhost:8088/restapi/auftrag', job);
 		console.log('Response', res.data);
 
@@ -100,25 +82,60 @@ export const auftragEinplanen = async (job, dispatch) => {
 	}
 };
 
-// assign a job to an assembler
-// export const auftragZuweisen = async (monteur, dispatch) => {
-// 	console.log('auftragZuweisen aufgerufen');
-// try {
-// 	const res = await axios.post('http://localhost:8088/restapi/auftrag', job);
-// 	console.log('Response', res.data);
+//assign a job to an assembler
+export const auftragZuweisen = async (data, dispatch) => {
+	console.log('Auftrag zuweisen');
+	try {
+		const res = await axios.post('http://localhost:8088/restapi/auftrag/zuweisen', data);
+		console.log('Response', res.data);
+	} catch (error) {
+		console.log('Error:', error);
+	}
+};
 
-// 	dispatch({
-// 		type: ADD_AUFTRAG,
-// 		payload: res.data
-// 	});
-// } catch (error) {
-// 	console.log('Error:', error);
-// 	dispatch({
-// 		type: AUFTRAG_ERROR,
-// 		payload: error
-// 	});
-// }
-// };
+//complete order
+export const auftragAbschliessen = async (data, dispatch) => {
+	console.log('Auftrag abschliessen', data);
+	try {
+		const res = await axios.post('http://localhost:8088/restapi/auftrag/abschliessen', data);
+		console.log('Response', res.data);
+	} catch (error) {
+		console.log('Error:', error);
+	}
+};
+
+//approve order
+export const auftragGenehmigen = async (data, dispatch) => {
+	console.log('Auftrag genehmigen', data);
+	try {
+		const res = await axios.post('http://localhost:8088/restapi/auftrag/genehmigen', data);
+		console.log('Response', res.data);
+	} catch (error) {
+		console.log('Error:', error);
+	}
+};
+
+//check order
+export const auftragPruefen = async (data, dispatch) => {
+	console.log('Auftrag prüfen', data);
+	try {
+		const res = await axios.post('http://localhost:8088/restapi/auftrag/pruefen', data);
+		console.log('Response', res.data);
+	} catch (error) {
+		console.log('Error:', error);
+	}
+};
+
+//release order
+export const auftragFreigeben = async (data, dispatch) => {
+	console.log('Auftrag freigeben', data);
+	try {
+		const res = await axios.post('http://localhost:8088/restapi/auftrag/freigeben', data);
+		console.log('Response', res.data);
+	} catch (error) {
+		console.log('Error:', error);
+	}
+};
 
 const AuftragState = (props) => {
 	const initState = {

@@ -11,8 +11,6 @@ const Tasks = () => {
 
 	useEffect(() => {
 		getTasks(taskDispatch);
-		//console.log(auftraege);
-		//console.log(typeof auftraege);
 	}, [taskDispatch]);
 
 	if (loading) {
@@ -29,7 +27,11 @@ const Tasks = () => {
 		);
 	} else {
 		//console.log(tasks);
-		return <div>{tasks !== null && tasks.map((task) => <TaskItem task={task} key={task.id} />)}</div>;
+		return (
+			<Fragment>
+				<div>{tasks !== null && tasks.map((task) => <TaskItem task={task} key={task.id} />)}</div>
+			</Fragment>
+		);
 	}
 };
 

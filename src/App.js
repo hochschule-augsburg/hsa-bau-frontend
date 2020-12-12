@@ -10,7 +10,6 @@ import About from './components/pages/About';
 import Jobs from './components/pages/Jobs';
 import Kunden from './components/pages/Kunden';
 import TaskList from './components/pages/TaskList';
-import TaskForm from './components/pages/TaskForm';
 import AuftragState from './context/auftrag/auftragState';
 import TaskState from './context/task/taskState';
 
@@ -32,7 +31,6 @@ const App = () => {
 							<Route exact path='/jobs' component={Jobs} />
 							<Route exact path='/kunden' component={Kunden} />
 							<Route exact path='/tasklist' component={TaskList} />
-							<Route exact path='/form' component={TaskForm} />
 						</Switch>
 					</Fragment>
 				</Router>
