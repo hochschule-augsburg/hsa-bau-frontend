@@ -2,21 +2,20 @@ import React, { Fragment } from 'react';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-import { auftragAbschliessen, clearAuftrag, useAuftrag } from '../../../context/auftrag/auftragState';
+import { auftragAbschliessen, clearSelected, useAuftrag } from '../../../context/auftrag/auftragState';
 import AuftragDetails from '../AuftragDetails';
 
 const AbschliessenForm = ({ job }) => {
 	const [auftragState, auftragDispatch] = useAuftrag();
 
+	//clickhandler
 	const onSubmit = (e) => {
 		e.preventDefault();
-		const data = {
+		const reqData = {
 			auftragId: job.id,
 			taskId: job.taskId
 		};
-		auftragAbschliessen(data, auftragDispatch);
-		clearAuftrag(auftragDispatch);
-		//getTasks(taskDispatch);
+		auftragAbschliessen(reqData, auftragDispatch);
 		M.toast({ html: 'Auftrag abgeschlossen' });
 	};
 
@@ -24,7 +23,7 @@ const AbschliessenForm = ({ job }) => {
 		<Fragment>
 			<AuftragDetails job={job} />
 			<div className='row'>
-				<div className='col offset-s3'>
+				<div className='col offset-s4'>
 					<button className='btn-small z-depth-0 waves-effect yellow darken-4 waves-light' onClick={onSubmit}>
 						Abschliessen
 					</button>

@@ -15,12 +15,12 @@ const Navbar = () => {
 					<ul id='nav-mobile' className='right hide-on-med-and-down mg-right-100'>
 						<li>
 							<Link to='/'>
-								<i className='fas fa-cog fa-sm'></i> Start Process
+								<i className='fas fa-cog fa-sm'></i> Prozess starten
 							</Link>
 						</li>
 						<li>
 							<Link to='/tasklist'>
-								<i className='fas fa-tasks fa-sm'></i> Task List
+								<i className='fas fa-tasks fa-sm'></i> Task-Board
 							</Link>
 						</li>
 						<li>

@@ -33,8 +33,6 @@ const FormHandler = () => {
 		default:
 	}
 
-	console.log(selected.taskName);
-
 	if (loading) {
 		return <Spinner />;
 	} else {

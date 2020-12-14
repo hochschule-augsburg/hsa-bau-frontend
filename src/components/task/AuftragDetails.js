@@ -3,10 +3,14 @@ import React, { Fragment } from 'react';
 const AuftragDetails = ({ job }) => {
 	return (
 		<Fragment>
-			<h5 className='center-align'>{job.taskName}</h5>
 			<div className='row'>
-				<div className='input-field col s1 m3 l3'></div>
-				<div className='input-field col s10 m6 l6'>
+				<div className='col offset-s4'>
+					<h5 className='left-align'># Task: {job.taskName}</h5>
+				</div>
+			</div>
+			<div className='row'>
+				<div className='input-field col s0 m3 l4'></div>
+				<div className='input-field col s12 m6 l4'>
 					<div className='card-panel white'>
 						<span className='black-text'>
 							<h6>
@@ -33,7 +37,7 @@ const AuftragDetails = ({ job }) => {
 						<br />
 					</div>
 				</div>
-				<div className='input-field col s1 m3 l3'></div>
+				<div className='input-field col s0 m3 l4'></div>
 			</div>
 		</Fragment>
 	);

@@ -5,8 +5,8 @@ const About = ({ history }) => {
 		<div>
 			<div className='container'>
 				<h4>About this App</h4>
-				<p className='my-1'>React App for managing SSB Fidan Process...</p>
-				<p className='my-1'>Stack etc...</p>
+				<p className='my-1'>Prototype React App for managing SSB Fidan Auftragsprozess...</p>
+				<p className='my-1'>React: 17.0.1</p>
 				<p className='grey darken-1 white-text p'>
 					<strong> Version: </strong>1.1.0
 				</p>

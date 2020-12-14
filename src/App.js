@@ -23,16 +23,15 @@ const App = () => {
 		<AuftragState>
 			<TaskState>
 				<Router>
-					<Fragment>
-						<Navbar />
-						<Switch>
-							<Route exact path='/' component={Process} />
-							<Route exact path='/about' component={About} />
-							<Route exact path='/jobs' component={Jobs} />
-							<Route exact path='/kunden' component={Kunden} />
-							<Route exact path='/tasklist' component={TaskList} />
-						</Switch>
-					</Fragment>
+					<Navbar />
+					<Switch>
+						<Route exact path='/' component={Process} />
+						<Route exact path='/about' component={About} />
+						<Route exact path='/jobs' component={Jobs} />
+						<Route exact path='/kunden' component={Kunden} />
+						{/* trick to force the component TaskList to rerender after submitting the taskforms and clicking on navlink Task-Board */}
+						<Route exact path='/tasklist' render={(props) => <TaskList load={Date.now()} {...props} />} />
+					</Switch>
 				</Router>
 			</TaskState>
 		</AuftragState>

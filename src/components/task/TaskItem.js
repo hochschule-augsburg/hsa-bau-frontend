@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 
-import { useAuftrag, getAuftrag } from '../../context/auftrag/auftragState';
+import { useAuftrag, getSelectedAuftrag } from '../../context/auftrag/auftragState';
 
 const TaskItem = ({ task }) => {
 	const [auftragState, auftragDispatch] = useAuftrag();
 
+	//get the nedded infos from the auftrag for displaying the taskforms
 	const loadForm = (e) => {
 		//e.preventDefault();
-		getAuftrag(task.name, task.processInstanceId, task.id, auftragDispatch);
+		getSelectedAuftrag(task.name, task.processInstanceId, task.id, auftragDispatch);
 	};
 
 	return (

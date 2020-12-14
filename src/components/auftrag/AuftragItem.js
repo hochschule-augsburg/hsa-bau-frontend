@@ -1,7 +1,15 @@
 import React, { Fragment } from 'react';
 
+import { useAuftrag, deleteAuftrag } from '../../context/auftrag/auftragState';
+
 const AuftragItem = ({ auftrag }) => {
-	//const [auftragState, auftragDispatch] = useAuftrag();
+	const [auftragState, auftragDispatch] = useAuftrag();
+
+	//handler
+	const onDelete = (e) => {
+		e.preventDefault();
+		deleteAuftrag(auftrag.id, auftragDispatch);
+	};
 
 	return (
 		<Fragment>
@@ -12,10 +20,10 @@ const AuftragItem = ({ auftrag }) => {
 					<td>{auftrag.kunde}</td>
 					<td>{auftrag.monteur}</td>
 					<td>
-						<b>{auftrag.status}</b>
+						<b>{auftrag.status == null ? 'angelegt' : auftrag.status}</b>
 					</td>
 					<td>
-						<a href='!#'>
+						<a href='#' onClick={onDelete}>
 							<i className='material-icons grey-text'>delete</i>
 						</a>
 					</td>

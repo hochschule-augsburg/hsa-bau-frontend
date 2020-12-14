@@ -5,28 +5,27 @@ import TaskItem from './TaskItem';
 import { useTask, getTasks } from '../../context/task/taskState';
 import Spinner from '../layout/Spinner';
 
-const Tasks = () => {
+const Tasks = ({ load }) => {
 	const [taskState, taskDispatch] = useTask();
 	const { tasks, loading } = taskState;
 
 	useEffect(() => {
 		getTasks(taskDispatch);
-	}, [taskDispatch]);
+	}, [taskDispatch, load]);
 
 	if (loading) {
 		return <Spinner />;
 	}
 
-	//console.log('Tasks:', tasks);
-
 	if (tasks !== null && tasks.length === 0 && !loading) {
 		return (
-			<div className='mg-top-100 center-align'>
-				<span>Momentan sind keine Tasks vorhanden...</span>
+			<div className='row'>
+				<div className='col l12'>
+					<p>Momentan sind keine offen Tasks vorhanden.</p>
+				</div>
 			</div>
 		);
 	} else {
-		//console.log(tasks);
 		return (
 			<Fragment>
 				<div>{tasks !== null && tasks.map((task) => <TaskItem task={task} key={task.id} />)}</div>
